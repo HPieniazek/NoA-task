@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
+using System.Text.RegularExpressions;
 
 namespace NoA_task
 {
@@ -7,24 +9,47 @@ namespace NoA_task
     {
         static void Main(string[] args)
         {
-            
-            DateTime date1 = new DateTime();
-            DateTime date2 = new DateTime();
-            
-            string date = Console.ReadLine();
-            string delimiter = " ";
-            string[] dateParts = date.Split(delimiter);
+            Console.WriteLine("Date range formating");
+            Console.WriteLine("Enter a date range. (To exit enter 'x')");
+           
+            while (true)
+            {
+                var userInput = Console.ReadLine();
+                string delimiter = " ";
+                string[] dateParts = userInput.Split(delimiter);
 
-            /*DateTime date11 = Convert.ToDateTime(dateParts[0]);
-            Console.WriteLine(date11);*/
-            date1 = DateTime.Parse(dateParts[0]);
-            date2 = DateTime.Parse(dateParts[1]);
+                switch (userInput)
+                {
+                    case "x":
+                        return;
+                    default:
+                        if (Regex.IsMatch(dateParts[0], @"^\d{4}([/.-])(\d{1,2})([/.-])(\d{1,2})") && Regex.IsMatch(dateParts[1], @"^\d{4}([/.-])(\d{1,2})([/.-])(\d{1,2})"))
+                        {
+                            DateTime start = DateTime.Parse(dateParts[0]);
+                            DateTime end = DateTime.Parse(dateParts[1]);
+                            DateRange range = new(start, end);
+                            Console.WriteLine(range.DateFormatingYearFirst());
+                        }
+                        else if(Regex.IsMatch(dateParts[0], @"^(\d{1,2})([/.-])(\d{1,2})([/.-])\d{4}") && Regex.IsMatch(dateParts[1], @"^(\d{1,2})([/.-])(\d{1,2})([/.-])\d{4}"))    
+                        {
+                            DateTime start = DateTime.Parse(dateParts[0]);
+                            DateTime end = DateTime.Parse(dateParts[1]);
+                            DateRange range = new(start, end);
+                            Console.WriteLine(range.DateFormating());
+                        }
+                        else
+                        {
+                            Console.WriteLine("Wrong date rate");
+                        }
+                     break;
+                }
+                Console.WriteLine("Enter a date or date range. (To exit enter 'x')");
+                
+            }
+
 
             
-            DateRange range = new(date1, date2);
-            Console.WriteLine(range.DateFormating());
-
+ 
         }
-
     }
 }

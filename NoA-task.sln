@@ -5,6 +5,8 @@ VisualStudioVersion = 17.3.32519.111
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoA-task", "NoA-task\NoA-task.csproj", "{7FCFF2A0-5675-4A0F-9091-64B9FC937567}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NoA-task.Test", "XUnitTest\NoA-task.Test.csproj", "{77921E1A-06F6-42AF-B2D1-4491559FD938}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7FCFF2A0-5675-4A0F-9091-64B9FC937567}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7FCFF2A0-5675-4A0F-9091-64B9FC937567}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7FCFF2A0-5675-4A0F-9091-64B9FC937567}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77921E1A-06F6-42AF-B2D1-4491559FD938}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77921E1A-06F6-42AF-B2D1-4491559FD938}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77921E1A-06F6-42AF-B2D1-4491559FD938}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77921E1A-06F6-42AF-B2D1-4491559FD938}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

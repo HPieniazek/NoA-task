@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NoA_task
@@ -12,13 +13,12 @@ namespace NoA_task
     {
         private DateTime _start { get; init; }
         private DateTime _end { get; init; }
-        public string separator { get; set; }
-        public CultureInfo culture { get; set; }
+        public CultureInfo culture { get; init; }
         public DateRange(DateTime start, DateTime end )
         {
-            if (start > end)
+            if (_start > _end)
             {
-                Console.WriteLine("Start date must be before end date");
+
             }
             _start = start;
             _end = end;
@@ -31,18 +31,31 @@ namespace NoA_task
             string retult = "";
             if (_start.Month == _end.Month && _start.Year == _end.Year)
             {
-                retult = string.Format("{0} - {1} -1", _start.ToString("dd", culture), _end.ToString("d", culture));
+                retult = string.Format("{0} - {1}", _start.ToString("dd", culture), _end.ToString("d", culture));
             }
             else if ( _start.Year == _end.Year)
             {
-                retult = string.Format("{0} - {1} -2", _start.ToString("dd/MM", culture), _end.ToString("d", culture));
+                retult = string.Format("{0} - {1}", _start.ToString("dd/MM", culture), _end.ToString("d", culture));
             }
             else
             {
-                retult = string.Format("{0} - {1} -3", _start.ToString("g", culture), _end.ToString("d", culture));
+                retult = string.Format("{0} - {1}", _start.ToString("d", culture), _end.ToString("d", culture));
             }
             return retult;
         }
+        
+        public string DateFormatingYearFirst()
+        {
+            string retult = string.Format("{0} - {1}", _start.ToString("yyyy/MM/dd", culture), _end.ToString("yyyy/MM/dd", culture));
+            return retult;
+        }
+        
+
+
+
+
+
+
     }
 
 }
