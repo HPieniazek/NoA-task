@@ -52,9 +52,7 @@ namespace NoA_task.Tests
         [InlineData("2016/02/01", "2017/02/02")]
         [InlineData("2016.02.01", "2017.02.02")]
         [InlineData("2016-02-01", "2017-02-02")]
-        [InlineData("2017/02/01", "2016/02/02")]
-        [InlineData("2017.02.01", "2016.02.02")]
-        [InlineData("2017-02-01", "2016-02-02")]
+
         public void FirstYearConvertToExpectedFormat_DateFormatting_ReturnsDateRangeToString(string start, string end)
         {
             var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
@@ -62,6 +60,24 @@ namespace NoA_task.Tests
             DateTime End = DateTime.Parse(end);
 
             string expected = $"{Start.ToString("yyyy/MM/dd")} - {End.Date.ToString("yyyy/MM/dd")}";
+
+            DateRange range = new(Start, End);
+
+            string actual = range.DateFormatingYearFirst();
+
+            Assert.Equal(expected, actual);
+        }
+        [Theory]
+        [InlineData("2017/02/01", "2016/02/02")]
+        [InlineData("2017.02.01", "2016.02.02")]
+        [InlineData("2017-02-01", "2016-02-02")]
+        public void FirstYearStartBigger_ConvertToExpectedFormat_DateFormatting_ReturnsDateRangeToString(string start, string end)
+        {
+            var culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
+            DateTime Start = DateTime.Parse(start);
+            DateTime End = DateTime.Parse(end);
+
+            string expected = $"{End.ToString("yyyy/MM/dd")} - {Start.Date.ToString("yyyy/MM/dd")}";
 
             DateRange range = new(Start, End);
 

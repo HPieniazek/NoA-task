@@ -16,12 +16,17 @@ namespace NoA_task
         public CultureInfo culture { get; init; }
         public DateRange(DateTime start, DateTime end )
         {
-            if (_start > _end)
+            if (start > end)
             {
-
+                _start = end;
+                _end = start;
             }
-            _start = start;
-            _end = end;
+            else
+            {
+                _start = start;
+                _end = end;
+            }
+            
             culture = new CultureInfo(CultureInfo.CurrentCulture.Name);
         }
 
